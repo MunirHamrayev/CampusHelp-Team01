@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusHelp – Prototype</title>
+<style>
+  :root{--ink:#1d2433;--muted:#5d6678;--line:#dde2ea;--bg:#f5f7fa;--card:#fff;--brand:#1f5fbf;--brand-d:#174a96;
+        --open:#c0392b;--prog:#b7791f;--done:#2f855a;--err:#c0392b}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+  header{background:var(--brand);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  header h1{margin:0;font-size:20px;letter-spacing:.3px}
+  header small{opacity:.85}
+  nav{display:flex;gap:4px;background:#fff;border-bottom:1px solid var(--line);padding:0 24px}
+  nav button{border:0;background:none;padding:14px 16px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent}
+  nav button[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+  main{max-width:1060px;margin:24px auto;padding:0 16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+  h2{margin:0 0 4px;font-size:19px}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+  .full{grid-column:1/-1}
+  label{display:block;font-weight:600;font-size:14px;margin-bottom:5px}
+  label .req{color:var(--err)}
+  input,select,textarea{width:100%;padding:9px 11px;border:1px solid #c5ccd8;border-radius:6px;font:inherit;background:#fff}
+  textarea{min-height:96px;resize:vertical}
+  .invalid{border-color:var(--err);background:#fff6f5}
+  .msg{color:var(--err);font-size:13px;margin-top:4px;min-height:0}
+  .prio{display:flex;gap:10px}
+  .prio label{font-weight:500;display:flex;align-items:center;gap:6px;border:1px solid #c5ccd8;border-radius:6px;padding:8px 12px;cursor:pointer;margin:0}
+  .prio input{width:auto}
+  .btn{background:var(--brand);color:#fff;border:0;border-radius:6px;padding:10px 20px;font:inherit;font-weight:600;cursor:pointer}
+  .btn:hover{background:var(--brand-d)}
+  .btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+  .confirm{text-align:center;padding:30px 10px}
+  .confirm .tick{width:56px;height:56px;border-radius:50%;background:#e6f4ec;color:var(--done);font-size:30px;line-height:56px;margin:0 auto 12px}
+  .rid{font-size:26px;font-weight:700;letter-spacing:1px;color:var(--brand);margin:8px 0}
+  .sim{display:inline-block;font-size:12px;background:#fff7e0;border:1px solid #f0d58c;color:#7a5a00;border-radius:4px;padding:2px 8px}
+  .row{display:flex;gap:10px;align-items:flex-end}
+  .row>div{flex:1}
+  dl{display:grid;grid-template-columns:160px 1fr;gap:8px 12px;margin:18px 0 0}
+  dt{color:var(--muted)} dd{margin:0;font-weight:600}
+  .pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;color:#fff}
+  .Open{background:var(--open)} .InProgress{background:var(--prog)} .Completed{background:var(--done)}
+  .pH{color:var(--open);font-weight:700} .pM{color:var(--prog);font-weight:700} .pL{color:var(--muted);font-weight:700}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;border-top:4px solid var(--line)}
+  .stat b{display:block;font-size:30px}
+  .stat span{color:var(--muted);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  .stat.o{border-top-color:var(--open)} .stat.p{border-top-color:var(--prog)} .stat.c{border-top-color:var(--done)} .stat.t{border-top-color:var(--brand)}
+  .toolbar{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .toolbar select{width:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{background:#f0f3f8;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  td select{padding:5px 6px;font-size:13px}
+  .toast{position:fixed;bottom:20px;right:20px;background:#1d2433;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:opacity .25s;font-size:14px}
+  .toast.show{opacity:1}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin:26px 0}
+  [hidden]{display:none!important}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}dl{grid-template-columns:1fr}
+    .tbl-wrap{overflow-x:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>CampusHelp</h1><small>University Student Service Request Portal</small></div>
+  <span class="sim">Prototype – data is simulated in memory</span>
+</header>
+<nav role="tablist">
+  <button role="tab" aria-selected="true"  data-tab="submit">Submit request</button>
+  <button role="tab" aria-selected="false" data-tab="track">Track request</button>
+  <button role="tab" aria-selected="false" data-tab="admin">Admin dashboard</button>
+</nav>
+
+<main>
+  <!-- ========== STUDENT: SUBMIT (T07) ========== -->
+  <section id="tab-submit" class="card">
+    <div id="formView">
+      <h2>Submit a service request</h2>
+      <p class="sub">Fields marked <span style="color:var(--err)">*</span> are required.</p>
+      <form id="reqForm" novalidate>
+        <div class="grid">
+          <div>
+            <label for="sid">Student ID <span class="req">*</span></label>
+            <input id="sid" placeholder="e.g. 2024001234" autocomplete="off">
+            <div class="msg" id="sid-msg"></div>
+          </div>
+          <div>
+            <label for="sname">Full name</label>
+            <input id="sname" placeholder="Optional">
+          </div>
+          <div>
+            <label for="cat">Request category <span class="req">*</span></label>
+            <select id="cat">
+              <option value="">— Select a category —</option>
+              <option>IT Support</option>
+              <option>Classroom Maintenance</option>
+              <option>Library Assistance</option>
+              <option>Administrative Services</option>
+            </select>
+            <div class="msg" id="cat-msg"></div>
+          </div>
+          <div>
+            <label for="loc">Location / room</label>
+            <input id="loc" placeholder="e.g. Block B, Room 204">
+          </div>
+          <div class="full">
+            <label for="desc">Description <span class="req">*</span></label>
+            <textarea id="desc" placeholder="Describe the problem or request (at least 10 characters)"></textarea>
+            <div class="msg" id="desc-msg"></div>
+          </div>
+          <div class="full">
+            <label>Priority <span class="req">*</span></label>
+            <div class="prio" id="prio">
+              <label><input type="radio" name="prio" value="High"> High</label>
+              <label><input type="radio" name="prio" value="Medium"> Medium</label>
+              <label><input type="radio" name="prio" value="Low"> Low</label>
+            </div>
+            <div class="msg" id="prio-msg"></div>
+          </div>
+          <div class="full"><button class="btn" type="submit" id="submitBtn">Submit request</button></div>
+        </div>
+      </form>
+    </div>
+
+    <div id="confirmView" class="confirm" hidden>
+      <div class="tick">✓</div>
+      <h2>Request submitted</h2>
+      <p class="sub" style="margin:4px 0">Your request ID is</p>
+      <div class="rid" id="newId"></div>
+      <p class="sub" id="confirmDetail"></p>
+      <p><span class="sim">Email acknowledgment: not in scope (CR-01 deferred to Phase 2)</span></p>
+      <p style="display:flex;gap:10px;justify-content:center;margin-top:18px">
+        <button class="btn" id="trackNew">Track this request</button>
+        <button class="btn ghost" id="another">Submit another</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== STUDENT: TRACK (T07) ========== -->
+  <section id="tab-track" class="card" hidden>
+    <h2>Track a request</h2>
+    <p class="sub">Enter the request ID shown on your confirmation screen (e.g. CH-2026-0003).</p>
+    <form id="trackForm" class="row" novalidate>
+      <div><label for="tid">Request ID</label><input id="tid" placeholder="CH-2026-0000"></div>
+      <button class="btn" type="submit" id="trackBtn">Search</button>
+    </form>
+    <div class="msg" id="track-msg"></div>
+    <dl id="trackResult" hidden></dl>
+  </section>
+
+  <!-- ========== ADMIN DASHBOARD (T08) ========== -->
+  <section id="tab-admin" hidden>
+    <div class="stats">
+      <div class="stat t"><span>Total</span><b id="sTotal">0</b></div>
+      <div class="stat o"><span>Open</span><b id="sOpen">0</b></div>
+      <div class="stat p"><span>In progress</span><b id="sProg">0</b></div>
+      <div class="stat c"><span>Completed</span><b id="sDone">0</b></div>
+    </div>
+    <div class="card">
+      <h2>All requests</h2>
+      <p class="sub">Assign each request and update its status. Changes appear in the counters and in student tracking straight away.</p>
+      <div class="toolbar">
+        <select id="fStatus" aria-label="Filter by status"><option value="">All statuses</option><option>Open</option><option>In Progress</option><option>Completed</option></select>
+        <select id="fCat" aria-label="Filter by category"><option value="">All categories</option><option>IT Support</option><option>Classroom Maintenance</option><option>Library Assistance</option><option>Administrative Services</option></select>
+        <select id="fPrio" aria-label="Filter by priority"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select>
+      </div>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Request ID</th><th>Student</th><th>Category</th><th>Priority</th><th>Submitted</th><th>Assigned to</th><th>Status</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>CampusHelp prototype · Project Management Assignment · Login, database and email are simulated and out of scope.</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* CampusHelp prototype – shared data and navigation */
+const STAFF = ["— Unassigned —","IT Help Desk","Maintenance Team","Library Desk","Registrar Office","Student Affairs"];
+let seq = 5;
+const today = () => new Date().toISOString().slice(0,10);
+const requests = [
+  {id:"CH-2026-0001",sid:"2024001101",name:"Aziza K.",cat:"IT Support",loc:"Lab 3",desc:"Projector in Lab 3 is not detected by the PC.",prio:"High",date:"2026-11-17",assign:"IT Help Desk",status:"In Progress",updated:"2026-11-17"},
+  {id:"CH-2026-0002",sid:"2023004455",name:"Jasur T.",cat:"Classroom Maintenance",loc:"Block B, 204",desc:"Two chairs broken in room 204.",prio:"Medium",date:"2026-11-17",assign:"Maintenance Team",status:"Completed",updated:"2026-11-18"},
+  {id:"CH-2026-0003",sid:"2025000987",name:"Dilnoza R.",cat:"Library Assistance",loc:"Library",desc:"Request access to IEEE Xplore database.",prio:"Low",date:"2026-11-18",assign:"— Unassigned —",status:"Open",updated:"2026-11-18"},
+  {id:"CH-2026-0004",sid:"2024003210",name:"Bekzod S.",cat:"Administrative Services",loc:"Registrar",desc:"Need enrolment verification letter for visa.",prio:"High",date:"2026-11-18",assign:"Registrar Office",status:"Open",updated:"2026-11-18"},
+];
+const $ = id => document.getElementById(id);
+const toast = t => {const el=$("toast");el.textContent=t;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),1800);};
+
+/* ---- tabs ---- */
+function showTab(name){
+  document.querySelectorAll("nav button").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===name));
+  ["submit","track","admin"].forEach(t=>$("tab-"+t).hidden = t!==name);
+  if(name==="admin" && typeof render==="function") render();
+}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+</script>
+<script src="student.js"></script>
+<script src="admin.js"></script>
+<!-- Shown until admin.js (T08) is added -->
+<script>window.addEventListener("load",()=>{ if(typeof render!=="function"){ document.getElementById("tab-admin").innerHTML='<div class="card"><h2>Admin dashboard</h2><p class="sub">Not built yet – planned in T08.</p></div>'; }});</script>
+</body>
+</html>
