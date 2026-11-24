@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 430" width="1180" height="430" font-family="Segoe UI, Arial, sans-serif">
+<rect width="1180" height="430" fill="#fff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#7a8496"/></marker>
+<marker id="ac" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#c0392b"/></marker></defs>
+<text x="20" y="32" font-size="19" font-weight="700" fill="#1d2433">CampusHelp – Task Dependency Network (Finish-to-Start)</text>
+<path d="M210,98.0 C230.0,98.0 230.0,98.0 248,98.0" fill="none" stroke="#7a8496" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M400,98.0 C420.0,98.0 420.0,98.0 438,98.0" fill="none" stroke="#7a8496" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M210,238.0 C230.0,238.0 230.0,238.0 248,238.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<path d="M400,238.0 C420.0,238.0 420.0,188.0 438,188.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<path d="M400,238.0 C420.0,238.0 420.0,288.0 438,288.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<path d="M590,188.0 C610.0,188.0 610.0,238.0 628,238.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<path d="M590,288.0 C610.0,288.0 610.0,238.0 628,238.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<path d="M780,238.0 C800.0,238.0 800.0,288.0 818,288.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<path d="M780,368.0 C800.0,368.0 800.0,288.0 818,288.0" fill="none" stroke="#7a8496" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M970,288.0 C990.0,288.0 990.0,288.0 1008,288.0" fill="none" stroke="#c0392b" stroke-width="2.6" marker-end="url(#ac)"/>
+<rect x="60" y="70" width="150" height="56" rx="7" fill="#f0f3f8" stroke="#9aa5b8" stroke-width="1"/>
+<text x="135.0" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T01 · 4h</text>
+<text x="135.0" y="112" text-anchor="middle" font-size="12.5" fill="#3d4657">Charter</text>
+<rect x="250" y="70" width="150" height="56" rx="7" fill="#f0f3f8" stroke="#9aa5b8" stroke-width="1"/>
+<text x="325.0" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T03 · 4h</text>
+<text x="325.0" y="112" text-anchor="middle" font-size="12.5" fill="#3d4657">WBS</text>
+<rect x="440" y="70" width="150" height="56" rx="7" fill="#f0f3f8" stroke="#9aa5b8" stroke-width="1"/>
+<text x="515.0" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T04 · 4h</text>
+<text x="515.0" y="112" text-anchor="middle" font-size="12.5" fill="#3d4657">Schedule</text>
+<rect x="60" y="210" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="135.0" y="233" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T02 · 4h</text>
+<text x="135.0" y="252" text-anchor="middle" font-size="12.5" fill="#3d4657">Requirements</text>
+<rect x="250" y="210" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="325.0" y="233" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T05 · 4h</text>
+<text x="325.0" y="252" text-anchor="middle" font-size="12.5" fill="#3d4657">Wireframes</text>
+<rect x="440" y="160" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="515.0" y="183" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T07 · 4h</text>
+<text x="515.0" y="202" text-anchor="middle" font-size="12.5" fill="#3d4657">Student UI</text>
+<rect x="440" y="260" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="515.0" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T08 · 4h</text>
+<text x="515.0" y="302" text-anchor="middle" font-size="12.5" fill="#3d4657">Admin UI</text>
+<rect x="630" y="210" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="705.0" y="233" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T09 · 4h</text>
+<text x="705.0" y="252" text-anchor="middle" font-size="12.5" fill="#3d4657">Testing</text>
+<rect x="630" y="340" width="150" height="56" rx="7" fill="#f0f3f8" stroke="#9aa5b8" stroke-width="1"/>
+<text x="705.0" y="363" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T10 · 3h</text>
+<text x="705.0" y="382" text-anchor="middle" font-size="12.5" fill="#3d4657">Change request</text>
+<rect x="820" y="260" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="895.0" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T11 · 3h</text>
+<text x="895.0" y="302" text-anchor="middle" font-size="12.5" fill="#3d4657">Final verification</text>
+<rect x="1010" y="260" width="150" height="56" rx="7" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="1085.0" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T12 · 3h</text>
+<text x="1085.0" y="302" text-anchor="middle" font-size="12.5" fill="#3d4657">Final report</text>
+<rect x="60" y="340" width="150" height="56" rx="7" fill="#f0f3f8" stroke="#9aa5b8" stroke-width="1"/>
+<text x="135.0" y="363" text-anchor="middle" font-size="14" font-weight="700" fill="#1d2433">T06 · 4h</text>
+<text x="135.0" y="382" text-anchor="middle" font-size="12.5" fill="#3d4657">Risk &amp; quality</text>
+<text x="630" y="420" font-size="12" fill="#5d6678">T10 starts when the change request arrives (Day 6).</text>
+<rect x="20" y="395" width="18" height="12" fill="#fdecea" stroke="#c0392b" stroke-width="2"/><text x="44" y="405" font-size="12.5" fill="#1d2433">Critical path: T02 → T05 → T07/T08 → T09 → T11 → T12 = 26 h (single resource)</text>
+</svg>
